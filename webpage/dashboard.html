@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="styles/dashboard.css" rel="stylesheet">
+
+    <script src defer="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </head>
+
+  <body>
+    <header class="header">
+        <h1>Estação Meteorológica Dashboard</h1>
+    </header>
+
+    <div class="main_container">
+        <div class="table_container">
+            <table id="customers">
+                <tr>
+                  <th>data</th>
+                  <th>tmg</th>
+                  <th>T</th>
+                  <th>tint</th>
+                  <th>UR</th>
+                  <th>Td</th>
+                  <th>Patm</th>
+                  <th>Prp10</th>
+                  <th>Prp30</th>
+                  <th>Prp60</th>
+                  <th>Pprp24</th>
+                  <th>Lat</th>
+                  <th>Lon</th>
+                  <th>Alt</th>
+                  <th>Satelite</th>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+                <tr>
+                    <td>14/10/2020</td>
+                    <td>12:43</td>
+                    <td>46°C</td>
+                    <td>43°C</td>
+                    <td>70%</td>
+                    <td>14.7</td>
+                    <td>1024.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.4</td>
+                    <td>0.6</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>-76</td>
+                </tr>
+        
+                  
+                </tr>
+              </table>
+        </div>
+
+        <div class="chart_container">
+            <div class="chart">
+                <canvas id="myChart1" width="100" height="37"></canvas>
+            </div>
+    
+            <div class="chart">
+                <canvas id="myChart2" width="100" height="37"></canvas>
+            </div>
+        </div>
+       
+    </div>
+    
+    <script>
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var ctx2 = document.getElementById('myChart2').getContext('2d');
+var chart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Diário',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+
+var chart2 = new Chart(ctx2, {
+    // The type of chart we want to create
+    type: 'line',
+
+    // The data for our dataset
+    data: {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        datasets: [{
+            label: 'Mensal',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [0, 10, 5, 2, 20, 30, 45]
+        }]
+    },
+
+    // Configuration options go here
+    options: {}
+});
+    </script>
+  </body>
+</html>
