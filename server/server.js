@@ -32,13 +32,13 @@ const db = new sqlite3.Database(__dirname + "/../database/estacao.db",
 });
 
 app.get("/api/measure/data",(req,res) => { 
-  db.all("SELECT * FROM estacao1", [], (err, data) => {
+  db.all("SELECT * FROM estacao1 ORDER BY rowid DESC LIMIT 10 ", [], (err, data) => {
     if (err) {
       console.error("Error on GET 'api/datas'");
       res.status(400).json({"error": err.message});
       process.exit(1);
     }
-
+    console.log(data)
     last_data = data;
     res.send(data);
   });

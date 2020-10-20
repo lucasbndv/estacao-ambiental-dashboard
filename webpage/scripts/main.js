@@ -65,7 +65,7 @@ function insertRow(table, row, length , index) {
   </tr>`)
 
   // if data not enough (10), fill the empty rows
-  if(index + 1 == length){
+  if(index + 1 == length  && length < 10){
     for (let i = 0 ; i + length < 10 ; i++){
       table.insertAdjacentHTML("beforeend",
         `<tr>
