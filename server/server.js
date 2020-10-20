@@ -31,8 +31,8 @@ const db = new sqlite3.Database(__dirname + "/../database/estacao.db",
   }
 });
 
-app.get("/api/measure/data",(req,res) => { 
-  db.all("SELECT * FROM estacao1", [], (err, data) => {
+app.get("/api/measure/estacao1",(req,res) => { 
+  db.all("SELECT * FROM estacao1 ORDER BY rowid DESC LIMIT 10", [], (err, data) => {
     if (err) {
       console.error("Error on GET 'api/datas'");
       res.status(400).json({"error": err.message});
@@ -43,6 +43,7 @@ app.get("/api/measure/data",(req,res) => {
     res.send(data);
   });
 })
+
 
 //  socketio events
 
