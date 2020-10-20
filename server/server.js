@@ -32,7 +32,7 @@ const db = new sqlite3.Database(__dirname + "/../database/estacao.db",
 });
 
 app.get("/api/measure/estacao1",(req,res) => { 
-  db.all("SELECT * FROM estacao1 ORDER BY rowid DESC LIMIT 10", [], (err, data) => {
+  db.all("SELECT * FROM estacao1 ORDER BY rowid LIMIT 10", [], (err, data) => {
     if (err) {
       console.error("Error on GET 'api/datas'");
       res.status(400).json({"error": err.message});
@@ -46,14 +46,23 @@ app.get("/api/measure/estacao1",(req,res) => {
 
 
 //  socketio events
-
-io.on("connection",(socket)=>{
+io.on("connection",(socket)=> {
   console.log("A new user has been connected with ID: ",socket.id);
-  socket.emit("update_table","");
-
-  socket.on("update_table", (data) => {
-    socket.broadcast.emit("update_table","");
-    console.log("update tables")
-  })
-  
 })
+
+setInterval(sendData, 50)
+
+let lastid = 1;
+function sendData() {
+  db.all("SELECT * FROM estacao1 WHERE rowid = ?", [lastid], (err, data) => {
+    
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    //console.log(data);
+    io.emit("update_table", JSON.stringify(data));
+    
+    lastid += 1;
+  });
+}

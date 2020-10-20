@@ -1,7 +1,6 @@
 let socket = io();
-let table_data = [];
-let last_id = 0;
-
+let dataTable = new DataTable();
+  
 async function getData(url) {
     let res = await fetch(url, {
     method: "GET", 
@@ -28,14 +27,6 @@ async function generateTable(table) {
   headers.forEach(h => table.insertHeader(h));
 }
 
-setIoEvents();
-
-function setIoEvents(){
-  socket.on("update_table",() => {
-    //updateTable();
-  })
-}
-
 function loadCSS(url,doc) {
   doc.setAttribute('type', "text/css" );
   doc.setAttribute('rel', "stylesheet" );
@@ -43,12 +34,20 @@ function loadCSS(url,doc) {
   document.getElementsByTagName("head").item(0).appendChild(doc);
 }
 
+function initSocketIO(socket) {
+  socket.on("update_table",(data) => {
+    
+    data = JSON.parse(data).shift();
+    //console.log(data);
 
-
+    dataTable.deleteRowPop();
+    dataTable.insertRow(data);
+  })
+}
 
 function main() {
-  let dataTable = new DataTable();
   generateTable(dataTable);
+  initSocketIO(socket);
 }
 
 main();

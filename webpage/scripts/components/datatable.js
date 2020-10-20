@@ -20,7 +20,7 @@ class DataTable {
     this.thead.appendChild(h);
   }
   
-  insertRow(data) {
+  insertRow(data, below) {
     let tr = document.createElement("tr");
     tr.classList.add(`row-${data.id}`);
     
@@ -38,19 +38,26 @@ class DataTable {
       tr.appendChild(td);
     });
     
-    this.tbody.appendChild(tr);
+    if (below === "below") {
+      this.tbody.appendChild(tr);
+    } else {
+      this.tbody.insertBefore(tr, this.table.querySelector("tbody > tr"));
+    }
   }
   
   deleteRowPop() {
-    [...table.table.querySelectorAll("tbody > tr")].pop().remove()
+    [...this.table.querySelectorAll("tbody > tr")].pop().remove()
   } 
   
   deleteRowShift() {
-    [...table.table.querySelectorAll("tbody > tr")].pop().remove()
+    let row = [...this.table.querySelectorAll("tbody > tr")].shift();
+    row.remove();
+    
+    return row;
   }  
    
   deleteRowByOrder(i) {
-    [...table.table.querySelectorAll("tbody > tr")][i].remove()
+    [...this.table.querySelectorAll("tbody > tr")][i].remove()
   }
   
   deleteRowById(id) {
