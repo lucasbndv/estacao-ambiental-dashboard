@@ -42,7 +42,7 @@ html,body{
 .table_container{
     height: 100%;
     width: 60%;
-    display: flex;
+    display: inline;
     align-items: center;
 }
 
@@ -75,11 +75,9 @@ html,body{
 /* chart */
 
 .chart_container{
-    height: 100%;
-    width: 40%;
+  display: inline;
+  padding: 0% 5%;
+  height: 100%;
+  width: 100%;
 }
 
-.chart{
-    height: 50%;
-    width: 100%;
-}

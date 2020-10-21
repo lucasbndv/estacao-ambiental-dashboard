@@ -50,7 +50,7 @@ io.on("connection",(socket)=> {
   console.log("A new user has been connected with ID: ",socket.id);
 })
 
-setInterval(sendData, 50)
+setInterval(sendData, 2000)
 
 let lastid = 1;
 function sendData() {
