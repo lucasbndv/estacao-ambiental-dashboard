@@ -1,117 +1,81 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Dashboard</title>
-    
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="styles/dashboard.css" rel="stylesheet">
 
-    <script src ="/socket.io/socket.io.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <link href="styles/normalize.css" rel="stylesheet" />
+    <link href="styles/skeleton.css" rel="stylesheet" />
+    <link href="styles/dashboard.css" rel="stylesheet" />
+
+    <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </head>
 
   <body>
     <header class="header">
-        <h1>Estação Meteorológica Dashboard</h1>
+      <h1>Estação Meteorológica Dashboard</h1>
     </header>
 
-    <div class="main_container">
-        <div class="table_container">
-            <table id="customers">
-                <tr>
-                  <th>data</th>
-                  <th>tmg</th>
-                  <th>T</th>
-                  <th>tint</th>
-                  <th>UR</th>
-                  <th>Td</th>
-                  <th>Patm</th>
-                  <th>Prp10</th>
-                  <th>Prp30</th>
-                  <th>Prp60</th>
-                  <th>Pprp24</th>
-                  <th>Lat</th>
-                  <th>Lon</th>
-                  <th>Alt</th>
-                  <th>Satelite</th>
-                </tr>
-                <tbody id = "tableData">
-                    
-                </tbody>
-            
-                  
-               
-              </table>
+    <main>
+      <div class="query">
+        <div class="filter_clicker">
+          <h4>Filtros</h4>
+          <div class="seta-baixo"></div>
+          <div class="seta-cima"></div>
         </div>
+        <form id="filters">
+          <ul>
+            <li>
+              <label for="date_from"
+                >De:<input
+                  type="date"
+                  id="date_from"
+                  name="date_from"
+                  placeholder="Exemplo: 01-01-2020"
+              /></label>
 
-        <div class="chart_container">
-            <div class="chart">
-                <canvas id="myChart1" width="100" height="37"></canvas>
-            </div>
-    
-            <div class="chart">
-                <canvas id="myChart2" width="100" height="37"></canvas>
-            </div>
-        </div>
-       
-    </div>
-    
-    <script>
-        var ctx = document.getElementById('myChart1').getContext('2d');
-        var ctx2 = document.getElementById('myChart2').getContext('2d');
-var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
+              <label for="date_to"
+                >Até:<input
+                  type="date"
+                  id="date_to"
+                  name="date_to"
+                  placeholder="Exemplo: 01-01-2020"
+              /></label>
+            </li>
+            <li>
+              <label for="sample">Dados:</label>
+              <input
+                type="text"
+                id="sample"
+                name="sample"
+                placeholder="Exemplo: 10 ; 20 || dados"
+              />
+            </li>
+            <li>
+              <label for="cresc"
+                >Crescente: <input type="radio" id="cresc" name="cresc"
+              /></label>
 
-    // The data for our dataset
-    data: {
-        labels: ['6:00', '9:00', '12:00', '15:00', '18:00', '21:00', '00:00'],
-        datasets: [{
-            label: 'Média diária no mês',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        },
-            {
-                label: "Dado de hoje",
-                backgroundColor: 'rgb(0, 99, 132)',
-                borderColor: 'rgb(0, 99, 132)',
-                data: [10,20,10,4,40,60,90]
-            }
-        ]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-
-var chart2 = new Chart(ctx2, {
-    // The type of chart we want to create
-    type: 'line',
-
-    // The data for our dataset
-    data: {
-        labels: ['1', '5', '9', '13', '17', '21', '25'],
-        datasets: [{
-            label: 'Mês anterior',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45]
-        },
-        {
-            label: 'Mês Atual',
-            backgroundColor: 'rgb(0, 99, 132)',
-            borderColor: 'rgb(0, 99, 132)',
-            data: [50, 60, 1, 8, 23, 35, 75]
-        }
-        ]
-    },
-
-    // Configuration options go here
-    options: {}
-});
-    </script>
-    <script src="./scripts/main.js"></script>
+              <label for="desc"
+                >Decrescente:<input type="radio" id="desc" name="cresc" checked
+              /></label>
+            </li>
+            <li>
+              <button id="search">Buscar</button>
+            </li>
+          </ul>
+        </form>
+      </div>
+      <div class="table_container"></div>
+    </main>
   </body>
+  <script src="./scripts/components/datatable.js"></script>
+  <script src="./scripts/components/chart.js"></script>
+  <script src="./scripts/main.js"></script>
 </html>
